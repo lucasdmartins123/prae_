@@ -1,0 +1,123 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 8rem;
+  background-color: #e3e3e3;
+}
+
+.profile__content {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.profile__content_picture {
+  text-align: center;
+}
+
+.profile__content__infos {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem 4rem;
+}
+
+.profile__content__out {
+  display: flex;
+  gap: 10px;
+}
+
+.profile__content__out h3 {
+  align-self: flex-end;
+}
+
+.profile__content h3 {
+  align-self: flex-start;
+  padding-bottom: 15px;
+}
+.profile__content__infos__password {
+  display: flex;
+  gap: 0 30px;
+}
+.profile__content__infos__password p {
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.profile__middle {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__middle h3 {
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.content-middle-book {
+  position: relative;
+}
+
+.content-middle-text {
+  margin-bottom: 2rem;
+}
+
+.cards-wrapper {
+  width: 100%;
+  min-height: 300px;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 140px;
+  height: 183px;
+  margin-right: 25px;
+}
+
+.card img {
+  width: 140px;
+  height: 183px;
+}
+
+.arrow {
+  color: gray;
+  border-radius: 50%;
+}
+
+.arrow-btn {
+  display: flex;
+  position: absolute;
+  top: 65px;
+}
+
+.arrow-left {
+  left: -20px;
+}
+
+.arrow-right {
+  right: -20px;
+}
+
+.arrow-text {
+  font-size: 1.5rem;
+}
+
+.card .p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin-top: 5px;
+}
+
+.profile__content__infos__password p:hover {
+  cursor: pointer;
+}
+
+.profile__content__out:hover {
+  cursor: pointer;
+}

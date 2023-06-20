@@ -1,0 +1,25 @@
+.image__btn {
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(188, 192, 193);
+  text-decoration: none;
+  width: 50%;
+}
+
+.edit__book__frame {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit__book__frame img {
+  width: 400px;
+}

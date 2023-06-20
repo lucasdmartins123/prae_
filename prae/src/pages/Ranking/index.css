@@ -1,0 +1,25 @@
+.user__ranking .ranking {
+  display: flex;
+  gap: 40px;
+}
+
+.user__ranking__text {
+  font-size: 22px;
+  min-width: 300px;
+}
+
+.ranking {
+  padding-bottom: 10px;
+}
+
+.ranking__content {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  align-items: center;
+  gap: 20px;
+}
+
+.ranking__content h2 {
+  margin: 2rem 0;
+}
