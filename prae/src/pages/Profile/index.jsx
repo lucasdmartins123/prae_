@@ -5,11 +5,12 @@ import booksData from "../../mock.js";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import usersData from "../../mockUser.js";
 import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
+import { AuthContext } from "../../components/contextos/AuthContext";
 
 export default function Profile() {
   const [books, setBooks] = useState(booksData);
@@ -17,6 +18,8 @@ export default function Profile() {
   const [user, setUser] = useState({});
   const { id } = useParams();
   const bookListRefEnd = useRef(null);
+
+  const { handleLogout } = useContext(AuthContext);
 
   const scrollLeft = (bookList) => {
     if (bookList.current) {
@@ -49,7 +52,7 @@ export default function Profile() {
             <h3>Crédtios: 2</h3>
             <h3>Ranking: 29</h3>
           </div>
-          <div className="profile__content__out">
+          <div className="profile__content__out" onClick={handleLogout}>
             <h3>Sair da conta</h3>
             <IconContext.Provider value={{ size: "2em" }}>
               <div>

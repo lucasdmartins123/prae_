@@ -6,7 +6,7 @@ export default function Begin() {
     <div className="container">
       <div className="container-begin">
         <div className="wrap-begin">
-          <form className="inicio-login-form">
+          <form className="inicio-begin-form">
             <span className="incio-form-title">
               Bem-Vindo a Biblioteca PRAE
             </span>

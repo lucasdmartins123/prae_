@@ -55,28 +55,26 @@ export default function EditBook() {
                 ></span>
               </div>
 
-              <div className="wrap-input">
-                <input
+              <div className="number__input">
+                <span>Genero: </span>
+                <select
                   className={book.categoria !== "" ? "has-val input" : "input"}
-                  type="genero"
                   value={book.categoria}
                   onChange={(e) => setBook(e.target.value)}
                 />
-                <span
-                  className="focus-input"
-                  data-placeholder="Insira o genero:"
-                ></span>
+                <span className="focus-input"></span>
               </div>
+
               <div className="number__input">
                 <span>Quantidade: </span>
-                <input
-                  className={quantidade !== "" ? "has-val input" : "input"}
-                  type="number"
-                  value={quantidade}
+                <select
+                  className={book.quantidade !== "" ? "has-val input" : "input"}
+                  value={book.quantidade}
                   onChange={(e) => setQuantidade(e.target.value)}
                 />
                 <span className="focus-input"></span>
               </div>
+
               <div className="container-login-form-btn">
                 <button className="login-form-btn"> Enviar </button>
               </div>

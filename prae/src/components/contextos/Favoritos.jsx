@@ -1,38 +1,24 @@
 import { createContext, useState } from "react";
+import { api } from "../../Axios/api";
 
 export const FavoritosContext = createContext();
 FavoritosContext.displayName = "Favoritos";
 
 export default function FavoritosProvider({ children }) {
   const [favorito, setFavorito] = useState([]);
+  async function addFavorite(userId, bookId) {
+    try {
+      const favorite = { idLivro: bookId, idUsuario: userId };
+      const data = await api.post("/listainteresse", favorite);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
-    <FavoritosContext.Provider value={{ favorito, setFavorito }}>
+    <FavoritosContext.Provider value={{ favorito }}>
       {children}
     </FavoritosContext.Provider>
   );
-}
-
-export function useFavoritoContext() {
-  const { favorito, setFavorito } = useContext(FavoritosContext);
-
-  function adicionarFavorito(novoFavorito) {
-    const favoritoRepetido = favorito.some(
-      (item) => item.id === novoFavorito.id
-    );
-
-    let novaLista = [...favorito];
-
-    if (!favoritoRepetido) {
-      novalista.push(novoFavorito);
-      return setFavorito(novaLista);
-    }
-
-    novaLista.slice(novaLista.indexOf(novoFavorito), 1);
-    return setFavorito(novaLista);
-  }
-  return {
-    favorito,
-    adicionarFavorito,
-  };
 }

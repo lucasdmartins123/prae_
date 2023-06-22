@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Link } from "react-router-dom";
-import gmail from "../../assets/gmail_logo.jpg";
+
+import { AuthContext } from "../../components/contextos/AuthContext";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+
+  const { handleRegister } = useContext(AuthContext);
+
+  function handleSubmit() {
+    if (!email || !password || !name || password !== confirmPassword) {
+      return;
+    }
+    handleRegister({ name, email, password });
+  }
+
   return (
     <div className="container">
       <div className="container-login">
         <div className="wrap-login">
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <span className="login-form-title"> Cadastro </span>
             <div className="wrap-input">
               <input
@@ -44,6 +56,19 @@ export default function Register() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Senha:"></span>
+            </div>
+
+            <div className="wrap-input">
+              <input
+                className={password !== "" ? "has-val input" : "input"}
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <span
+                className="focus-input"
+                data-placeholder="Confirme a senha:"
+              ></span>
             </div>
 
             <div className="container-login-form-btn">

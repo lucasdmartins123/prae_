@@ -18,6 +18,10 @@ export default function Book() {
     return books.find((book) => book.id === id);
   }
 
+  function handleAddToFavorites() {
+    console.log(id);
+  }
+
   return (
     <>
       <Navbar />
@@ -33,7 +37,9 @@ export default function Book() {
           <h2>Autor: {book.autor}</h2>
           <h2>Gênero: {book.categoria}</h2>
           <p>
-            Adicionar a lista de interesse <input type="checkbox" />
+            Adicionar a lista de interesse{" "}
+            <button onClick={handleAddToFavorites}>add</button>
+            <input type="checkbox" />
           </p>
           <button className="book__page__btn"> Reservar </button>
         </div>

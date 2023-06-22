@@ -48,28 +48,26 @@ export default function NewBook() {
                 ></span>
               </div>
 
-              <div className="newbook__wrap__input">
-                <input
+              <div className="number__input">
+                <span>Genero: </span>
+                <select
                   className={genero !== "" ? "has-val input" : "input"}
-                  type="genero"
                   value={genero}
                   onChange={(e) => setGenero(e.target.value)}
                 />
-                <span
-                  className="focus-input"
-                  data-placeholder="Insira o genero:"
-                ></span>
+                <span className="focus-input"></span>
               </div>
+
               <div className="number__input">
                 <span>Quantidade: </span>
-                <input
+                <select
                   className={quantidade !== "" ? "has-val input" : "input"}
-                  type="number"
                   value={quantidade}
                   onChange={(e) => setQuantidade(e.target.value)}
                 />
                 <span className="focus-input"></span>
               </div>
+
               <div className="container-login-form-btn">
                 <button className="login-form-btn"> Enviar </button>
               </div>

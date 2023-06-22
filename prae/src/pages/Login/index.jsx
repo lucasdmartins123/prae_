@@ -1,16 +1,30 @@
 import "./index.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import gmail from "../../assets/gmail_logo.jpg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../components/contextos/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { handleLogin } = useContext(AuthContext);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("submit");
+    if (!email || !password) {
+      return;
+    }
+    handleLogin({ email, password });
+  }
+  console.log(email);
+  console.log(password);
   return (
     <div className="container">
       <div className="container-login">
         <div className="wrap-login">
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <span className="login-form-title"> Login </span>
             <div className="wrap-input">
               <input
@@ -35,9 +49,12 @@ export default function Login() {
             <p className="forgot-password">Esqueceu a senha?</p>
 
             <div className="container-login-form-btn">
-              <Link className="login-form-btn" to="/home">
-                <button className="login-form-btn"> Login </button>
-              </Link>
+              {/* <Link className="login-form-btn" to="/home"> */}
+              <button type={"submit"} className="login-form-btn">
+                {" "}
+                Login{" "}
+              </button>
+              {/* </Link> */}
             </div>
 
             <div className="text-center">
