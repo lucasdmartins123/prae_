@@ -1,50 +1,44 @@
 import "./index.css";
 import Navbar from "../../components/Navbar";
-import booksData from "../../mock.js";
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { BooksContext } from "../../components/contextos/BooksContext";
 
 export default function Book() {
-  const [books, setBooks] = useState(booksData);
-  const [book, setBook] = useState({});
   const { id } = useParams();
-
-  useEffect(() => {
-    setBook(searchBook());
-  }, []);
-
-  function searchBook() {
-    return books.find((book) => book.id === id);
-  }
+  const { loadBookDetails, bookDetails, bookAddFavorites } =
+    useContext(BooksContext);
 
   function handleAddToFavorites() {
-    console.log(id);
+    bookAddFavorites(id);
   }
+
+  useEffect(() => {
+    loadBookDetails(id);
+  }, [id]);
 
   return (
     <>
       <Navbar />
       <div className="book__page">
         <div className="book__page__img">
-          <img src={book.imagem} alt="livro" />
-          <Link to={`/editBook/${book.id}`}>
+          <img src="/Garota-exemplar.jpg" alt="livro" />
+          <Link to={`/editBook/${bookDetails.id}`}>
             <h3>Editar livro</h3>
           </Link>
         </div>
         <div className="book__page__info">
-          <h2>Titulo: {book.nome} </h2>
-          <h2>Autor: {book.autor}</h2>
-          <h2>Gênero: {book.categoria}</h2>
-          <p>
-            Adicionar a lista de interesse{" "}
-            <button onClick={handleAddToFavorites}>add</button>
-            <input type="checkbox" />
-          </p>
-          <button className="book__page__btn"> Reservar </button>
+          <h2>Título: {bookDetails.titulo} </h2>
+          <h2>Autor: {bookDetails.autor}</h2>
+          <h2>Gênero: {bookDetails.genero}</h2>
+          <button onClick={handleAddToFavorites} className="book__page__btn">
+            Adicionar a lista de interesse
+          </button>
         </div>
       </div>
-      ;
     </>
   );
 }

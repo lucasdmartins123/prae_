@@ -1,0 +1,29 @@
+.search__container {
+  min-height: calc(100vh - 58px);
+  background-color: #e3e3e3;
+  padding: 58px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.search__container h1 {
+  align-self: center;
+}
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search__book img {
+  width: 140px;
+  height: 183px;
+  margin-right: 22px;
+}
+.search__book p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}

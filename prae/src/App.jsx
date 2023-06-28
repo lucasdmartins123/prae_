@@ -11,6 +11,7 @@ import Begin from "./pages/Begin/index.jsx";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./components/contextos/AuthContext.jsx";
+import SearchResult from "./pages/SearchResult/index.jsx";
 
 function App() {
   const { authenticated, loading } = useContext(AuthContext);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/book/:id" element={<Book />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/search" element={<SearchResult />} />
           {/* admin */}
           <Route path="/editBook/:id" element={<EditBook />} />
           <Route path="/creditArea" element={<CreditArea />} />

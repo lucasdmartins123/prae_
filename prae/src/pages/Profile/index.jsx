@@ -1,25 +1,21 @@
 import "./index.css";
 import Navbar from "../../components/Navbar";
-import teste from "../../assets/teste.jpg";
-import booksData from "../../mock.js";
+import avatar from "../../assets/avatar.jpg";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { useState, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import usersData from "../../mockUser.js";
 import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { AuthContext } from "../../components/contextos/AuthContext";
+import { BooksContext } from "../../components/contextos/BooksContext";
 
 export default function Profile() {
-  const [books, setBooks] = useState(booksData);
-  const [users, setUsers] = useState(usersData);
-  const [user, setUser] = useState({});
+  const { booksList } = useContext(BooksContext);
   const { id } = useParams();
   const bookListRefEnd = useRef(null);
-
-  const { handleLogout } = useContext(AuthContext);
+  const { handleLogout, userData } = useContext(AuthContext);
 
   const scrollLeft = (bookList) => {
     if (bookList.current) {
@@ -39,14 +35,12 @@ export default function Profile() {
       <div className="profile">
         <div className="profile__content">
           <div className="profile__content_picture">
-            <img src={teste} alt="foto" />
-            <h3>Alterar foto</h3>
+            <img src={avatar} alt="foto" />
           </div>
           <div className="profile__content__infos">
-            <h3>Nome completo: Yuri Morais</h3>
-            <h3>Email: yurimorais@hotmail.com</h3>
+            <h3>Nome completo: {userData?.name}</h3>
+            <h3>Email: {userData?.email}</h3>
             <div className="profile__content__infos__password">
-              <h3>Senha: *********</h3>
               <p>Alterar senha</p>
             </div>
             <h3>Crédtios: 2</h3>
@@ -69,15 +63,15 @@ export default function Profile() {
             <h3>Acessar cadastro de livros</h3>
           </Link>
         </div>
-        <div className="content-middle">
-          <h2 className="content-middle-text">Minha lista de interesse:</h2>
-          <div className="content-middle-book">
+        <div className="content-favorites">
+          <h2 className="content-favorites-text">Minha lista de interesse:</h2>
+          <div className="content-favorites-book">
             <button
-              className="arrow-btn arrow-left"
+              className="arrow-favorites-btn arrow-favorites-left"
               onClick={() => scrollLeft(bookListRefEnd)}
             >
               <IconContext.Provider
-                value={{ size: "2.5em", className: "arrow" }}
+                value={{ size: "2.5em", className: "arrow-favorites" }}
               >
                 <div>
                   <BsFillArrowLeftCircleFill />
@@ -85,22 +79,22 @@ export default function Profile() {
               </IconContext.Provider>
             </button>
 
-            <div className="cards-wrapper" ref={bookListRefEnd}>
-              {books.map((book, index) => (
+            <div className="cards-favorites-wrapper" ref={bookListRefEnd}>
+              {booksList.map((book, index) => (
                 <div key={index} className="card">
                   <Link to={`/book/${book.id}`}>
-                    <img src={book.imagem} alt="livro teste" />
+                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
                   </Link>
-                  <p className="arrow-text">{book.nome}</p>
+                  <p className="arrow-favorites-text">{book.titulo}</p>
                 </div>
               ))}
             </div>
             <button
-              className="arrow-btn arrow-right"
+              className="arrow-favorites-btn arrow-favorites-right"
               onClick={() => scrollRight(bookListRefEnd)}
             >
               <IconContext.Provider
-                value={{ size: "2.5em", className: "arrow" }}
+                value={{ size: "2.5em", className: "arrow-favorites" }}
               >
                 <div>
                   <BsFillArrowRightCircleFill />

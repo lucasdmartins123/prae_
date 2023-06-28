@@ -1,25 +1,22 @@
 import "./index.css";
 import { useContext, useState } from "react";
-import gmail from "../../assets/gmail_logo.jpg";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../components/contextos/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
 
   const { handleLogin } = useContext(AuthContext);
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submit");
-    if (!email || !password) {
-      return;
+    if (!email || !senha) {
+      return alert("email ou senha invalida");
     }
-    handleLogin({ email, password });
+    handleLogin({ email, senha });
   }
-  console.log(email);
-  console.log(password);
+
   return (
     <div className="container">
       <div className="container-login">
@@ -38,10 +35,10 @@ export default function Login() {
 
             <div className="wrap-input-senha">
               <input
-                className={password !== "" ? "has-val input" : "input"}
+                className={senha !== "" ? "has-val input" : "input"}
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Senha:"></span>
             </div>
@@ -49,12 +46,9 @@ export default function Login() {
             <p className="forgot-password">Esqueceu a senha?</p>
 
             <div className="container-login-form-btn">
-              {/* <Link className="login-form-btn" to="/home"> */}
               <button type={"submit"} className="login-form-btn">
-                {" "}
-                Login{" "}
+                Login
               </button>
-              {/* </Link> */}
             </div>
 
             <div className="text-center">

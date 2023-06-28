@@ -11,10 +11,8 @@ html {
 }
 
 .container-begin {
-  width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 15px;
@@ -22,34 +20,22 @@ html {
 }
 
 .wrap-begin {
-  width: 500px;
-  height: 350px;
+  width: 600px;
+  height: 370px;
   background-color: #ffffff;
   border-radius: 10px;
-  overflow: hidden;
-  padding: 50px 40px 30px 40px;
+  padding: 60px;
   box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
-}
-
-.inicio-begin-form {
-  width: 100%;
 }
 
 .incio-form-title {
   display: flex;
   font-size: 30px;
-  color: black;
-  line-height: 1.2;
-  text-align: center;
-  justify-content: center;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .container-inicio-begin-form-btn {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 12px 0;
+  padding: 15px 0;
 }
 
 .inicio-begin-form-btn {
@@ -62,7 +48,6 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 50px;
   background-color: rgb(2, 196, 254);
   text-decoration: none;
@@ -70,10 +55,8 @@ html {
 
 .txt1-inicio {
   display: flex;
-  font-size: 14px;
-  color: #000000;
   line-height: 1.5;
-  padding: 15px;
+  padding: 15px 0;
 }
 
 .inicio-begin-form-btn:hover {

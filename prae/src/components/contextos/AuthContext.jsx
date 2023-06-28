@@ -4,18 +4,21 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
+  const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   async function handleLogin(userData) {
     try {
-      const data = await api.post("/api/login", userData);
-      console.log(data);
+      const { data } = await api.post("/login", userData);
       const token = JSON.stringify(data.token);
+      const user = { name: data.nome, email: data.email, id: data.id };
       localStorage.setItem("token", token);
-      api.defaults.headers.Authorization = `Bearer ${data.token}`;
+      localStorage.setItem("user", JSON.stringify(user));
       setAuthenticated(true);
+      setUserData(user);
+
       navigate("/home");
     } catch (error) {
       console.log(error);
@@ -24,13 +27,10 @@ const AuthProvider = ({ children }) => {
 
   async function handleRegister(userData) {
     try {
-      const data = await api.post("/register", userData);
-      console.log(data);
-      const token = JSON.stringify(data.token);
-      localStorage.setItem("token", token);
-      api.defaults.headers.Authorization = `Bearer ${data.token}`;
-      setAuthenticated(true);
-      navigate("/home");
+      console.log(userData);
+      await api.post("/cadastro", userData);
+      alert("cadastrado com sucesso");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -39,15 +39,17 @@ const AuthProvider = ({ children }) => {
   function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem("token");
-    api.defaults.headers.Authorization = undefined;
+
     navigate("/");
   }
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
+    const user = JSON.parse(localStorage.getItem("user"));
+
     if (token) {
-      api.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
+      setUserData(user);
     }
     setLoading(false);
   }, []);
@@ -60,6 +62,7 @@ const AuthProvider = ({ children }) => {
         handleLogout,
         authenticated,
         loading,
+        userData,
       }}
     >
       {children}

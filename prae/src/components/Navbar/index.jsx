@@ -4,9 +4,16 @@ import { BsSearch } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { BsFilter } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { BooksContext } from "../contextos/BooksContext";
 
 export default function Navbar() {
+  const { search, setSearch } = useContext(BooksContext);
+  const navigate = useNavigate();
+  function handleSearch() {
+    navigate("/search");
+  }
   return (
     <div className="cabecalho">
       <div className="logo-area">
@@ -22,11 +29,16 @@ export default function Navbar() {
       <div className="action-area">
         <div className="search-input">
           <IconContext.Provider value={{ size: "1em", className: "icon" }}>
-            <div>
+            <div className="search-input-lupa" onClick={handleSearch}>
               <BsSearch />
             </div>
           </IconContext.Provider>
-          <input type="text" placeholder="Insira o nome do livro aqui" />
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            placeholder="Insira o nome do livro aqui"
+          />
         </div>
 
         <IconContext.Provider value={{ size: "1.5em", color: "black" }}>
@@ -34,11 +46,6 @@ export default function Navbar() {
             <Link to="/profile">
               <CgProfile />
             </Link>
-          </div>
-        </IconContext.Provider>
-        <IconContext.Provider value={{ size: "1.5em" }}>
-          <div>
-            <BsFilter />
           </div>
         </IconContext.Provider>
       </div>

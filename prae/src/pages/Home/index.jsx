@@ -1,18 +1,24 @@
 import "./index.css";
 import ranking from "../../assets/ranking.gif";
 import Navbar from "../../components/Navbar";
-import { useState, useEffect, useRef } from "react";
-import booksData from "../../mock.js";
+import { useState, useRef, useContext, useEffect } from "react";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
+import { BooksContext } from "../../components/contextos/BooksContext";
+import Tags from "../../components/Tags";
+import { AuthContext } from "../../components/contextos/AuthContext";
 
 export default function Home() {
-  const [name, setName] = useState("Yuri");
-  const [books, setBooks] = useState(booksData);
+  const [filter, setFilter] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [empty, setEmpty] = useState(false);
   const bookListRefMiddle = useRef(null);
   const bookListRefEnd = useRef(null);
+  const { booksList, favoritesList, bookLoadFavorites } =
+    useContext(BooksContext);
+  const { userData } = useContext(AuthContext);
 
   const scrollLeft = (bookList) => {
     if (bookList.current) {
@@ -26,9 +32,38 @@ export default function Home() {
     }
   };
 
+  function handleFilter(category) {
+    if (category === "ALL") {
+      setEmpty(false);
+      setFilter([]);
+    } else {
+      const selected = booksList.filter((book) => book.genero === category);
+      if (selected.length > 0) {
+        setEmpty(false);
+        setFilter(selected);
+      } else {
+        setEmpty(true);
+      }
+    }
+  }
+
+  function loadFavorites() {
+    const fav = [];
+    for (let i = 0; i < favoritesList.length; i++) {
+      const verify = booksList.filter((book) => book.id == favoritesList[i]);
+      console.log(verify);
+      if (verify.length > 0) {
+        fav.push(verify[0]);
+      }
+    }
+
+    setFavorites(fav);
+  }
+
   useEffect(() => {
-    console.log(bookListRefMiddle);
-  });
+    bookLoadFavorites();
+    loadFavorites();
+  }, []);
 
   return (
     <>
@@ -36,7 +71,7 @@ export default function Home() {
       <div className="home__container">
         <div className="content-top">
           <div className="content-text">
-            <h1>Olá {name}</h1>
+            <h1>Olá {userData?.name}</h1>
             <p>Veja aqui os livros disponíveis para reservas</p>
           </div>
           <div className="content-ranking">
@@ -47,7 +82,7 @@ export default function Home() {
           </div>
         </div>
         <div className="content-middle">
-          <h2 className="content-middle-text">Livros disponíveis:</h2>
+          <h2 className="">Minha lista de interesse:</h2>
           <div className="content-middle-book">
             <button
               className="arrow-btn arrow-left"
@@ -56,72 +91,58 @@ export default function Home() {
               <IconContext.Provider
                 value={{ size: "2.5em", className: "arrow" }}
               >
-                <div>
-                  <BsFillArrowLeftCircleFill />
-                </div>
+                <BsFillArrowLeftCircleFill />
               </IconContext.Provider>
             </button>
 
             <div className="cards-wrapper" ref={bookListRefMiddle}>
-              {books.map((book, index) => (
+              {favorites.map((book, index) => (
                 <div key={index} className="card">
                   <Link to={`/book/${book.id}`}>
-                    <img src={book.imagem} alt="livro teste" />
+                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
                   </Link>
-                  <p className="arrow-text">{book.nome}</p>
+                  <p className="book-text">{book.titulo}</p>
                 </div>
               ))}
-            </div>
-            <button
-              className="arrow-btn arrow-right"
-              onClick={() => scrollRight(bookListRefMiddle)}
-            >
-              <IconContext.Provider
-                value={{ size: "2.5em", className: "arrow" }}
+
+              <button
+                className="arrow-btn arrow-right"
+                onClick={() => scrollRight(bookListRefMiddle)}
               >
-                <div>
+                <IconContext.Provider
+                  value={{ size: "2.5em", className: "arrow" }}
+                >
                   <BsFillArrowRightCircleFill />
-                </div>
-              </IconContext.Provider>
-            </button>
+                </IconContext.Provider>
+              </button>
+            </div>
           </div>
         </div>
-        <div className="content-end">
-          <h2 className="content-middle-text">Minha lista de interesse:</h2>
-          <div className="content-middle-book">
-            <button
-              className="arrow-btn arrow-left"
-              onClick={() => scrollLeft(bookListRefEnd)}
-            >
-              <IconContext.Provider
-                value={{ size: "2.5em", className: "arrow" }}
-              >
-                <div>
-                  <BsFillArrowLeftCircleFill />
+        <div className="">
+          <Tags handleFilter={handleFilter} />
+          <h2 className="content-end-text">Livros disponíveis:</h2>
+          <div className="books_container">
+            {empty === true ? (
+              <p>Nenhum livro dessa categoria</p>
+            ) : filter.length > 0 ? (
+              filter.map((book, index) => (
+                <div key={index} className="book__card">
+                  <Link to={`/book/${book.id}`}>
+                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
+                  </Link>
+                  <p className="arrow-end-text">{book.titulo}</p>
                 </div>
-              </IconContext.Provider>
-            </button>
-
-            <div className="cards-wrapper" ref={bookListRefEnd}>
-              {books.map((book, index) => (
-                <div key={index} className="card">
-                  <img src={book.imagem} alt="livro teste" />
-                  <p className="arrow-text">{book.nome}</p>
+              ))
+            ) : (
+              booksList.map((book, index) => (
+                <div key={index} className="book__card">
+                  <Link to={`/book/${book.id}`}>
+                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
+                  </Link>
+                  <p className="arrow-end-text">{book.titulo}</p>
                 </div>
-              ))}
-            </div>
-            <button
-              className="arrow-btn arrow-right"
-              onClick={() => scrollRight(bookListRefEnd)}
-            >
-              <IconContext.Provider
-                value={{ size: "2.5em", className: "arrow" }}
-              >
-                <div>
-                  <BsFillArrowRightCircleFill />
-                </div>
-              </IconContext.Provider>
-            </button>
+              ))
+            )}
           </div>
         </div>
       </div>

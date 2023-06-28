@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
-
+import "./index.css";
 import { Link } from "react-router-dom";
-
 import { AuthContext } from "../../components/contextos/AuthContext";
 
 export default function Register() {
@@ -12,19 +11,20 @@ export default function Register() {
 
   const { handleRegister } = useContext(AuthContext);
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     if (!email || !password || !name || password !== confirmPassword) {
       return;
     }
-    handleRegister({ name, email, password });
+    handleRegister({ nome: name, email, senha: password });
   }
 
   return (
     <div className="container">
-      <div className="container-login">
-        <div className="wrap-login">
-          <form className="login-form" onSubmit={handleSubmit}>
-            <span className="login-form-title"> Cadastro </span>
+      <div className="container-register">
+        <div className="wrap-register">
+          <form className="register-form" onSubmit={handleSubmit}>
+            <span className="register-form-title"> Cadastro </span>
             <div className="wrap-input">
               <input
                 className={name !== "" ? "has-val input" : "input"}
@@ -71,10 +71,10 @@ export default function Register() {
               ></span>
             </div>
 
-            <div className="container-login-form-btn">
-              <Link className="login-form-btn" to="/home">
-                <button className="login-form-btn"> Login </button>
-              </Link>
+            <div className="container-register-form-btn">
+              <button type="submit" className="register-form-btn">
+                Login
+              </button>
             </div>
 
             <div className="text-center">

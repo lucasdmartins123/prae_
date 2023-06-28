@@ -1,12 +1,29 @@
 import "./index.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Navbar from "../../components/Navbar";
+import { BooksContext } from "../../components/contextos/BooksContext";
 
 export default function NewBook() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
   const [genero, setGenero] = useState("");
   const [quantidade, setQuantidade] = useState("");
+  const { bookRegister } = useContext(BooksContext);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!titulo || !autor || !genero || !quantidade || genero === "select") {
+      alert("preencha todos os campos");
+    }
+    const newBook = {
+      titulo,
+      autor,
+      genero,
+      quantidade,
+    };
+    bookRegister(newBook);
+  }
+
   return (
     <>
       <Navbar />
@@ -20,7 +37,7 @@ export default function NewBook() {
             </form>
           </div>
           <div className="wrap">
-            <form className="login-form">
+            <form className="login-form" onSubmit={handleSubmit}>
               <span className="login-form-title"> Cadastro de Livros </span>
               <div className="newbook__wrap__input">
                 <input
@@ -54,22 +71,27 @@ export default function NewBook() {
                   className={genero !== "" ? "has-val input" : "input"}
                   value={genero}
                   onChange={(e) => setGenero(e.target.value)}
-                />
-                <span className="focus-input"></span>
+                >
+                  <option value="select">Selecionar</option>
+                  <option value="ROMANCE">Romance</option>
+                  <option value="COMEDIA">Comedia</option>
+                  <option value="CIENCIA">Ciencia</option>
+                </select>
               </div>
 
-              <div className="number__input">
+              <div className="quantidade__input">
                 <span>Quantidade: </span>
-                <select
+                <input
                   className={quantidade !== "" ? "has-val input" : "input"}
                   value={quantidade}
                   onChange={(e) => setQuantidade(e.target.value)}
                 />
-                <span className="focus-input"></span>
               </div>
 
               <div className="container-login-form-btn">
-                <button className="login-form-btn"> Enviar </button>
+                <button type="submit" className="login-form-btn">
+                  Enviar
+                </button>
               </div>
             </form>
           </div>
