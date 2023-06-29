@@ -1,15 +1,15 @@
 .book__page {
+  min-height: calc(100vh - 58px);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   background-color: #e3e3e3;
-  flex-grow: 1;
 }
 
 .book__page__info {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 35px;
 }
 
 .book__page__img img {
@@ -37,4 +37,27 @@
   text-decoration: underline;
   color: black;
   font-size: 25px;
+  padding-top: 10px;
+}
+
+.book__page__btn:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  .book__page {
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  .book__page__img {
+    padding: 30px 0;
+  }
+  .book__page__img img {
+    width: 200px;
+    height: 300px;
+  }
+
+  .book__page__img h3 {
+    font-size: 20px;
+  }
 }

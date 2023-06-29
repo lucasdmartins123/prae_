@@ -3,6 +3,7 @@ import { BooksContext } from "../../components/contextos/BooksContext";
 import "./index.css";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
+import livro from "../../assets/livrogenerico.jpg";
 
 const SearchResult = () => {
   const { search, booksList } = useContext(BooksContext);
@@ -23,7 +24,7 @@ const SearchResult = () => {
           {searchResult.map((result, index) => (
             <div className="search__book" key={index}>
               <Link to={`/book/${result.id}`}>
-                <img src="/Garota-exemplar.jpg" alt="livro teste" />
+                <img src={livro} alt="livro teste" />
               </Link>
               <p>{result.titulo}</p>
             </div>

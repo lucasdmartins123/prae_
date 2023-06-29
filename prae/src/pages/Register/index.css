@@ -150,3 +150,11 @@ html {
   line-height: 1.5;
   text-decoration: none;
 }
+
+@media (max-width: 400px) {
+  .wrap-register {
+    width: 350px;
+    height: 570px;
+    padding: 20px 10px;
+  }
+}

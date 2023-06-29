@@ -1,4 +1,5 @@
 import "./index.css";
+import livro from "../../assets/livrogenerico.jpg";
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { useParams } from "react-router-dom";
@@ -58,7 +59,7 @@ export default function EditBook() {
       <div className="container">
         <div className="newbook__container">
           <div className="edit__book__frame">
-            <img src="/Garota-exemplar.jpg" alt="livro" />
+            <img src={livro} alt="livro" />
           </div>
           <div className="wrap">
             <form className="edit-form" onSubmit={handleSubmit}>
@@ -101,7 +102,12 @@ export default function EditBook() {
                 >
                   <option value="ROMANCE">Romance</option>
                   <option value="COMEDIA">Comedia</option>
+                  <option value="DRAMA">Ciencia</option>
                   <option value="DRAMA">Drama</option>
+                  <option value="DRAMA">Aventura</option>
+                  <option value="DRAMA">Ação</option>
+                  <option value="DRAMA">Terror</option>
+                  <option value="DRAMA">Suspense</option>
                 </select>
               </div>
 

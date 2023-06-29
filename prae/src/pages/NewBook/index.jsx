@@ -76,6 +76,11 @@ export default function NewBook() {
                   <option value="ROMANCE">Romance</option>
                   <option value="COMEDIA">Comedia</option>
                   <option value="CIENCIA">Ciencia</option>
+                  <option value="DRAMA">Drama</option>
+                  <option value="AVENTURA">Aventura</option>
+                  <option value="ACAO">Ação</option>
+                  <option value="TERROR">Terror</option>
+                  <option value="SUSPENSE">Suspense</option>
                 </select>
               </div>
 

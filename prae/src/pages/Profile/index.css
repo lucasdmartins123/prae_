@@ -92,14 +92,14 @@
 
 .arrow-favorites {
   color: gray;
-  border-radius: 50%;
+  background-color: #e3e3e3;
 }
 
 .arrow-favorites-btn {
   display: flex;
   position: absolute;
   top: 65px;
-  z-index: 10;
+  border: none;
 }
 
 .arrow-favorites-left {

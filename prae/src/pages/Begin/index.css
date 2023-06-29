@@ -62,3 +62,11 @@ html {
 .inicio-begin-form-btn:hover {
   cursor: pointer;
 }
+
+@media (max-width: 425px) {
+  .wrap-begin {
+    width: 360px;
+    height: 360px;
+    padding: 20px;
+  }
+}

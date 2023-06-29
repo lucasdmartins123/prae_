@@ -1,7 +1,8 @@
 import "./index.css";
+import livro from "../../assets/livrogenerico.jpg";
 import ranking from "../../assets/ranking.gif";
 import Navbar from "../../components/Navbar";
-import { useState, useRef, useContext, useEffect } from "react";
+import { useState, useRef, useContext, useEffect, useMemo } from "react";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -12,7 +13,7 @@ import { AuthContext } from "../../components/contextos/AuthContext";
 
 export default function Home() {
   const [filter, setFilter] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
   const [empty, setEmpty] = useState(false);
   const bookListRefMiddle = useRef(null);
   const bookListRefEnd = useRef(null);
@@ -47,22 +48,21 @@ export default function Home() {
     }
   }
 
-  function loadFavorites() {
+  let favorites = useMemo(() => {
     const fav = [];
     for (let i = 0; i < favoritesList.length; i++) {
       const verify = booksList.filter((book) => book.id == favoritesList[i]);
-      console.log(verify);
+
       if (verify.length > 0) {
         fav.push(verify[0]);
       }
     }
 
-    setFavorites(fav);
-  }
+    return fav;
+  }, [favoritesList]);
 
   useEffect(() => {
     bookLoadFavorites();
-    loadFavorites();
   }, []);
 
   return (
@@ -99,9 +99,9 @@ export default function Home() {
               {favorites.map((book, index) => (
                 <div key={index} className="card">
                   <Link to={`/book/${book.id}`}>
-                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
+                    <img src={livro} alt="livro teste" />
                   </Link>
-                  <p className="book-text">{book.titulo}</p>
+                  <p> {book.titulo}</p>
                 </div>
               ))}
 
@@ -121,25 +121,25 @@ export default function Home() {
         <div className="">
           <Tags handleFilter={handleFilter} />
           <h2 className="content-end-text">Livros disponíveis:</h2>
-          <div className="books_container">
+          <div className="container_end">
             {empty === true ? (
               <p>Nenhum livro dessa categoria</p>
             ) : filter.length > 0 ? (
               filter.map((book, index) => (
-                <div key={index} className="book__card">
+                <div key={index} className="card_end">
                   <Link to={`/book/${book.id}`}>
-                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
+                    <img src={livro} alt="livro teste" />
                   </Link>
-                  <p className="arrow-end-text">{book.titulo}</p>
+                  <p> {book.titulo}</p>
                 </div>
               ))
             ) : (
               booksList.map((book, index) => (
-                <div key={index} className="book__card">
+                <div key={index} className="card_end">
                   <Link to={`/book/${book.id}`}>
-                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
+                    <img src={livro} alt="livro teste" />
                   </Link>
-                  <p className="arrow-end-text">{book.titulo}</p>
+                  <p>{book.titulo}</p>
                 </div>
               ))
             )}

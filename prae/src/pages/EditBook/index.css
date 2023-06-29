@@ -59,3 +59,9 @@
 .edit-form-btn:hover {
   cursor: pointer;
 }
+
+@media (max-width: 800px) {
+  .edit-form-btn {
+    background-color: rgb(21, 23, 24);
+  }
+}

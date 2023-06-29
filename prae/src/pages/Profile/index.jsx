@@ -1,10 +1,11 @@
 import "./index.css";
+import livro from "../../assets/livrogenerico.jpg";
 import Navbar from "../../components/Navbar";
 import avatar from "../../assets/avatar.jpg";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef, useEffect, useContext, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
@@ -12,7 +13,8 @@ import { AuthContext } from "../../components/contextos/AuthContext";
 import { BooksContext } from "../../components/contextos/BooksContext";
 
 export default function Profile() {
-  const { booksList } = useContext(BooksContext);
+  const { booksList, favoritesList, bookLoadFavorites } =
+    useContext(BooksContext);
   const { id } = useParams();
   const bookListRefEnd = useRef(null);
   const { handleLogout, userData } = useContext(AuthContext);
@@ -28,7 +30,22 @@ export default function Profile() {
       bookList.current.scrollLeft += 200; // Valor do scroll para a direita (ajuste conforme necessário)
     }
   };
+  let favorites = useMemo(() => {
+    const fav = [];
+    for (let i = 0; i < favoritesList.length; i++) {
+      const verify = booksList.filter((book) => book.id == favoritesList[i]);
 
+      if (verify.length > 0) {
+        fav.push(verify[0]);
+      }
+    }
+
+    return fav;
+  }, [favoritesList]);
+
+  useEffect(() => {
+    bookLoadFavorites();
+  }, []);
   return (
     <>
       <Navbar />
@@ -73,19 +90,17 @@ export default function Profile() {
               <IconContext.Provider
                 value={{ size: "2.5em", className: "arrow-favorites" }}
               >
-                <div>
-                  <BsFillArrowLeftCircleFill />
-                </div>
+                <BsFillArrowLeftCircleFill />
               </IconContext.Provider>
             </button>
 
-            <div className="cards-favorites-wrapper" ref={bookListRefEnd}>
-              {booksList.map((book, index) => (
+            <div className="cards-wrapper" ref={bookListRefEnd}>
+              {favorites.map((book, index) => (
                 <div key={index} className="card">
                   <Link to={`/book/${book.id}`}>
-                    <img src="/Garota-exemplar.jpg" alt="livro teste" />
+                    <img src={livro} alt="livro teste" />
                   </Link>
-                  <p className="arrow-favorites-text">{book.titulo}</p>
+                  <p className="book-text">{book.titulo}</p>
                 </div>
               ))}
             </div>
@@ -96,9 +111,7 @@ export default function Profile() {
               <IconContext.Provider
                 value={{ size: "2.5em", className: "arrow-favorites" }}
               >
-                <div>
-                  <BsFillArrowRightCircleFill />
-                </div>
+                <BsFillArrowRightCircleFill />
               </IconContext.Provider>
             </button>
           </div>

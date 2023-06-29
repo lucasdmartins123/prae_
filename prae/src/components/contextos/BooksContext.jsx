@@ -69,12 +69,8 @@ const BooksProvider = ({ children }) => {
     const userId = userData.id;
     const favoriteData = { usuarioId: userId, livroId: bookId };
     try {
-      const data = await api.post(
-        `/usuarios/${userId}/favoritos`,
-        favoriteData,
-        headers
-      );
-      console.log(data);
+      await api.post(`/usuarios/${userId}/favoritos`, favoriteData, headers);
+      bookLoadFavorites();
     } catch (error) {
       console.log(error);
     }
@@ -86,6 +82,19 @@ const BooksProvider = ({ children }) => {
     try {
       const data = await api.get(`/usuarios/${userId}/favoritos`, headers);
       setFavoritesList(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function bookDelFavorites(bookId) {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    const userId = userData.id;
+
+    try {
+      await api.delete(`/usuarios/${userId}/favoritos/${bookId}`, headers);
+
+      bookLoadFavorites();
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +120,7 @@ const BooksProvider = ({ children }) => {
         search,
         setSearch,
         bookLoadFavorites,
+        bookDelFavorites,
       }}
     >
       {children}
