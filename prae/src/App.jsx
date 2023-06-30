@@ -12,6 +12,9 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./components/contextos/AuthContext.jsx";
 import SearchResult from "./pages/SearchResult/index.jsx";
+import NaoEncontrada from "./pages/NaoEncontrada/index.jsx";
+import NewTrade from "./pages/NewTrade/index.jsx";
+import TradeHistory from "./pages/TradeHistory/index.jsx";
 
 function App() {
   const { authenticated, loading } = useContext(AuthContext);
@@ -32,11 +35,13 @@ function App() {
           {/* admin */}
           <Route path="/editBook/:id" element={<EditBook />} />
           <Route path="/creditArea" element={<CreditArea />} />
+          <Route path="/newTrade" element={<NewTrade />} />
+          <Route path="/tradeHistory" element={<TradeHistory />} />
           <Route path="/newBook" element={<NewBook />} />
           <Route path="/ranking" element={<Ranking />} />
         </>
       )}
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<NaoEncontrada />} />
     </Routes>
   );
 }

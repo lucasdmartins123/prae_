@@ -17,7 +17,7 @@
 
 .search__book {
   width: 140px;
-  margin-right: 33px;
+  margin-right: 32px;
   margin-bottom: 20px;
 }
 
@@ -30,4 +30,28 @@
   margin-right: 10px;
   font-size: 1.5rem;
   word-break: break-word;
+}
+
+@media (max-width: 425px) {
+  .search__container {
+    padding: 18px 30px;
+  }
+  .search__book {
+    width: 140px;
+    margin-right: 17px;
+    margin-bottom: 20px;
+  }
+  .search__container h1 {
+    align-self: center;
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .search__container {
+    padding: 38px 40px;
+  }
+  .search__container h1 {
+    align-self: start;
+  }
 }

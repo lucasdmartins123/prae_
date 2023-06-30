@@ -2,18 +2,18 @@ import "./index.css";
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
 
-export default function CreditArea() {
+export default function NewTrade() {
   const [email, setEmail] = useState("");
-  const [credits, setCredits] = useState("");
+  const [idBookNew, setIdBookNew] = useState("");
+  const [idBookOld, setIdBookOld] = useState("");
 
   return (
     <>
       <Navbar />
       <div className="credit-area__container">
-        {/* <div className="credit-area"> */}
         <div className="wrap-login">
           <form className="login-form">
-            <span className="login-form-title"> Área de Créditos </span>
+            <span className="login-form-title"> Adicionar troca </span>
             <div className="wrap-input">
               <input
                 className={email !== "" ? "has-val input" : "input"}
@@ -29,14 +29,27 @@ export default function CreditArea() {
 
             <div className="wrap-input">
               <input
-                className={credits !== "" ? "has-val input" : "input"}
-                type="credits"
-                value={credits}
-                onChange={(e) => setCredits(e.target.value)}
+                className={idBookNew !== "" ? "has-val input" : "input"}
+                type="text"
+                value={idBookNew}
+                onChange={(e) => setIdBookNew(e.target.value)}
               />
               <span
                 className="focus-input"
-                data-placeholder="Insira os Créditos:"
+                data-placeholder="Insira o id do livro de entrada:"
+              ></span>
+            </div>
+
+            <div className="wrap-input">
+              <input
+                className={idBookOld !== "" ? "has-val input" : "input"}
+                type="text"
+                value={idBookOld}
+                onChange={(e) => setIdBookOld(e.target.value)}
+              />
+              <span
+                className="focus-input"
+                data-placeholder="Insira o id do livro de saida:"
               ></span>
             </div>
 

@@ -50,7 +50,7 @@
     flex-direction: column;
   }
   .book__page__img {
-    padding: 30px 0;
+    padding: 0px 0;
   }
   .book__page__img img {
     width: 200px;
@@ -59,5 +59,30 @@
 
   .book__page__img h3 {
     font-size: 20px;
+  }
+
+  .book__page__info {
+    padding-left: 30px;
+    gap: 25px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .book__page__img img {
+    width: 300px;
+    height: 450px;
+  }
+  .book__page {
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+
+  .book__page__info {
+    gap: 30px;
+    padding-left: 40px;
+  }
+
+  .book__page__info {
+    font-size: 16px;
   }
 }

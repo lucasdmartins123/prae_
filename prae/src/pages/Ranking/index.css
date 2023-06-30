@@ -1,25 +1,19 @@
-.user__ranking .ranking {
-  display: flex;
-  gap: 40px;
+.ranking__content {
+  min-height: calc(100vh - 58px);
+  background-color: #e3e3e3;
+  padding: 28px 100px;
+}
+.ranking__content h2 {
+  padding-bottom: 20px;
 }
 
-.user__ranking__text {
-  font-size: 22px;
-  min-width: 300px;
+.user__ranking {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .ranking {
-  padding-bottom: 10px;
-}
-
-.ranking__content {
   display: flex;
-  flex-direction: column;
-  padding-bottom: 10px;
-  align-items: center;
-  gap: 20px;
-}
-
-.ranking__content h2 {
-  margin: 2rem 0;
+  justify-content: space-between;
 }

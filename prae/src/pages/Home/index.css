@@ -120,10 +120,35 @@
   word-break: break-word;
 }
 
-@media (max-width: 400px) {
-  .wrap-begin {
-    width: 360px;
-    height: 360px;
+@media (max-width: 425px) {
+  .home__container {
     padding: 20px;
+    gap: 20px;
+  }
+
+  .content-top {
+    display: flex;
+    flex-direction: column;
+  }
+  .content-text p {
+    font-size: 18px;
+  }
+  .content-text h1 {
+    margin-bottom: 8px;
+    font-size: 30px;
+  }
+  .content-ranking img {
+    display: none;
+  }
+  .content-ranking h2 {
+    text-align: start;
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .home__container {
+    padding: 40px 50px;
+    gap: 30px;
   }
 }

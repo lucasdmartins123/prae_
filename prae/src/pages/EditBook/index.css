@@ -1,3 +1,23 @@
+.editbook__container {
+  width: 100%;
+  min-height: calc(100vh - 58px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px;
+  background-color: #e3e3e3;
+}
+
+.edit__wrap {
+  width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 50px 50px 30px 50px;
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
 .image__btn {
   font-size: 15px;
   border: none;
@@ -60,8 +80,33 @@
   cursor: pointer;
 }
 
-@media (max-width: 800px) {
-  .edit-form-btn {
-    background-color: rgb(21, 23, 24);
+@media (max-width: 425px) {
+  .editbook__container {
+    padding: 10px 30px;
+  }
+  .edit__book__frame img {
+    width: 250px;
+    padding: 25px 0;
+  }
+
+  .edit__wrap {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .editbook__container {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0 50px;
+  }
+  .edit__book__frame {
+    margin-right: 30px;
+  }
+  .edit__book__frame img {
+    width: 300px;
+  }
+  .edit__wrap {
+    padding: 20px 25px;
   }
 }

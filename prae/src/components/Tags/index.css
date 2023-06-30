@@ -28,3 +28,32 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+@media (max-width: 425px) {
+  .tags__lista {
+    flex-wrap: wrap;
+    justify-content: left;
+  }
+  .tags__lista li {
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .tags__lista {
+    flex-wrap: wrap;
+    justify-content: left;
+  }
+  .tags__lista li {
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+
+  .container_end {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1px;
+  }
+}

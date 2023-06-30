@@ -1,4 +1,5 @@
 .profile {
+  min-height: calc(100vh - 58px);
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -126,4 +127,49 @@
 
 .profile__content__out:hover {
   cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  .profile {
+    padding: 20px;
+    gap: 15px;
+  }
+  .profile__content_picture img {
+    width: 100px;
+  }
+  .profile__content__infos {
+    padding: 0 10px;
+  }
+  .profile__content__infos h3 {
+    font-size: 14px;
+    padding-bottom: 8px;
+  }
+  .profile__content__infos__password p {
+    font-size: 10px;
+  }
+
+  .profile__content__out {
+    display: flex;
+    gap: 10px;
+  }
+
+  .profile__content h3 {
+    font-size: 14px;
+  }
+  .profile__middle h3 {
+    font-size: 16px;
+  }
+  .card {
+    margin-right: 20px;
+  }
+  .content-favorites-text {
+    margin-bottom: 1rem;
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .profile {
+    padding: 3.5rem;
+  }
 }

@@ -79,6 +79,12 @@ export default function Profile() {
           <Link to="/newBook">
             <h3>Acessar cadastro de livros</h3>
           </Link>
+          <Link to="/newTrade">
+            <h3>Acessar área de trocas</h3>
+          </Link>
+          <Link to="/tradeHistory">
+            <h3>Acessar histórico de trocas</h3>
+          </Link>
         </div>
         <div className="content-favorites">
           <h2 className="content-favorites-text">Minha lista de interesse:</h2>

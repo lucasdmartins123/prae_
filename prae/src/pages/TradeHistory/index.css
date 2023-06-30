@@ -1,0 +1,17 @@
+.trade__container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  align-items: center;
+  gap: 20px;
+}
+
+.trade__infos {
+  display: flex;
+}
+.trade__card {
+  margin-right: 30px;
+}
+.trade__card p {
+  margin-bottom: 10px;
+}
