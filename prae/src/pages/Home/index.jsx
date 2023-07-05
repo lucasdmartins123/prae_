@@ -10,13 +10,12 @@ import { IconContext } from "react-icons";
 import { BooksContext } from "../../components/contextos/BooksContext";
 import Tags from "../../components/Tags";
 import { AuthContext } from "../../components/contextos/AuthContext";
+import Footer from "../../components/Footer";
 
 export default function Home() {
   const [filter, setFilter] = useState([]);
-  // const [favorites, setFavorites] = useState([]);
   const [empty, setEmpty] = useState(false);
   const bookListRefMiddle = useRef(null);
-  const bookListRefEnd = useRef(null);
   const { booksList, favoritesList, bookLoadFavorites } =
     useContext(BooksContext);
   const { userData } = useContext(AuthContext);
@@ -74,12 +73,16 @@ export default function Home() {
             <h1>Olá {userData?.name}</h1>
             <p>Veja aqui os livros disponíveis para reservas</p>
           </div>
-          <div className="content-ranking">
-            <img src={ranking} alt="ranking" />
-            <Link className="h2" to="/ranking">
-              <h2>Acessar ranking</h2>
-            </Link>
-          </div>
+          {userData.admin ? (
+            <div className="content-ranking">
+              <img src={ranking} alt="ranking" />
+              <Link className="h2" to="/ranking">
+                <h2>Acessar ranking</h2>
+              </Link>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="content-middle">
           <h2 className="">Minha lista de interesse:</h2>
@@ -146,6 +149,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

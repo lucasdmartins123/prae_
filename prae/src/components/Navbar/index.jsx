@@ -26,6 +26,11 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
+      <div className="text">
+        <Link className="text" to="/aboutUs">
+          Sobre nós
+        </Link>
+      </div>
       <div className="action-area">
         <div className="search-input">
           <IconContext.Provider value={{ size: "1em", className: "icon" }}>

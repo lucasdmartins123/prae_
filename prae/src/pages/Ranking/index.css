@@ -1,19 +1,40 @@
 .ranking__content {
-  min-height: calc(100vh - 58px);
+  min-height: calc(100vh - 125px);
   background-color: #e3e3e3;
-  padding: 28px 100px;
+  padding: 28px 350px;
+  display: flex;
+  flex-direction: column;
 }
 .ranking__content h2 {
   padding-bottom: 20px;
+  align-self: center;
 }
 
 .user__ranking {
   display: flex;
-  flex-wrap: wrap;
+  gap: 8px;
   flex-direction: column;
 }
 
 .ranking {
   display: flex;
   justify-content: space-between;
+}
+
+@media (max-width: 425px) {
+  .ranking__content {
+    padding: 20px 65px;
+  }
+  .ranking {
+    flex-direction: column;
+  }
+  .ranking p {
+    padding-bottom: 5px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .ranking__content {
+    padding: 20px 50px;
+  }
 }

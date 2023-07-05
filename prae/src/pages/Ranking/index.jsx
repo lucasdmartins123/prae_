@@ -2,6 +2,7 @@ import "./index.css";
 import Navbar from "../../components/Navbar";
 import usersData from "../../mockUser.js";
 import { useState } from "react";
+import Footer from "../../components/Footer";
 
 export default function Ranking() {
   const [users, setUsers] = useState(usersData);
@@ -15,12 +16,13 @@ export default function Ranking() {
             <div key={index} className="ranking">
               <p>Posição: {user.id}</p>
               <p>Nome: {user.nomeCompleto}</p>
-              <p>Livros devolvidos: {user.livrosDevolvidos}</p>
+
               <p>Pontos: {user.pontos}</p>
             </div>
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 }

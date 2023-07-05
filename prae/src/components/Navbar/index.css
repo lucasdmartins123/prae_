@@ -21,6 +21,14 @@
 .logo-area .logo-text {
   text-decoration: none;
   color: black;
+  background-color: #e3e3e3;
+}
+
+.text {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: #e3e3e3;
 }
 
 .action-area {
@@ -58,9 +66,11 @@
   .cabecalho {
     padding: 5px 15px;
   }
-
+  .logo-area img {
+    margin-right: 5px;
+  }
   .search-input input {
-    width: 190px;
+    width: 110px;
   }
 }
 
@@ -79,11 +89,15 @@
   .search-input input {
     width: 400px;
   }
+  .text {
+    text-decoration: none;
+    color: black;
+  }
 
   .action-area {
     display: flex;
     gap: 2px;
     align-items: center;
-    margin-left: 100px;
+    margin-left: 50px;
   }
 }

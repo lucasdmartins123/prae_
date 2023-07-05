@@ -1,9 +1,9 @@
 .profile {
-  min-height: calc(100vh - 58px);
+  min-height: calc(100vh - 125px);
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 8rem;
+  padding: 5rem 6rem 3rem 6rem;
   background-color: #e3e3e3;
 }
 

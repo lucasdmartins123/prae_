@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { BooksContext } from "../../components/contextos/BooksContext";
+import Footer from "../../components/Footer";
 
 export default function Book() {
   const { id } = useParams();
@@ -71,6 +72,7 @@ export default function Book() {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 }

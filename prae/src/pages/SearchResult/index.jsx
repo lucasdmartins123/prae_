@@ -4,6 +4,7 @@ import "./index.css";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import livro from "../../assets/livrogenerico.jpg";
+import Footer from "../../components/Footer";
 
 const SearchResult = () => {
   const { search, booksList } = useContext(BooksContext);
@@ -31,6 +32,7 @@ const SearchResult = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

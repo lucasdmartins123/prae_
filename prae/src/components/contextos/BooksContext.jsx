@@ -10,6 +10,7 @@ const BooksProvider = ({ children }) => {
   const [bookDetails, setBookDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [trades, setTrades] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const headers = {
@@ -39,6 +40,7 @@ const BooksProvider = ({ children }) => {
   async function bookRegister(bookData) {
     try {
       await api.post("livros", bookData, headers);
+      loadBooks();
       alert("livro adicionado");
     } catch (error) {
       console.log(error);
@@ -100,11 +102,35 @@ const BooksProvider = ({ children }) => {
     }
   }
 
+  async function addTrade(userEmail, bookEntradaId, bookSaidaId = null) {
+    const tradeData = {
+      emailUsuario: userEmail,
+      livroEntradaId: bookEntradaId,
+      livroSaidaId: bookSaidaId,
+    };
+    try {
+      await api.post(`/trocas`, tradeData, headers);
+      loadTrades();
+      alert("Troca adiconada com sucesso");
+    } catch (error) {
+      alert("Usuario nao cadastrado");
+    }
+  }
+
+  async function loadTrades() {
+    try {
+      const data = await api.get(`/trocas`, headers);
+      setTrades(data.data.content);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     if (token) {
       loadBooks();
     }
-  }, [bookRegister]);
+  }, []);
   return (
     <BooksContext.Provider
       value={{
@@ -121,6 +147,9 @@ const BooksProvider = ({ children }) => {
         setSearch,
         bookLoadFavorites,
         bookDelFavorites,
+        addTrade,
+        loadTrades,
+        trades,
       }}
     >
       {children}

@@ -7,17 +7,17 @@ html {
 
 .credit-area__container {
   display: flex;
-  flex-grow: 1;
+  min-height: calc(100vh - 125px);
   align-items: center;
   justify-content: center;
   background: #e3e3e3;
 }
 
-.wrap-login {
+.wrap-addTrade {
   width: 500px;
   background-color: #ffffff;
   border-radius: 10px;
-  overflow: hidden;
+
   padding: 50px 40px 30px 40px;
   box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
@@ -138,4 +138,39 @@ html {
 
 .login-form-btn:hover {
   cursor: pointer;
+}
+
+.search__trade__container {
+  position: relative;
+}
+.search__trade__container input {
+  width: 90%;
+}
+.searchResult {
+  z-index: 99;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.searchResult p:hover {
+  color: aqua;
+  cursor: pointer;
+}
+
+.search__icon {
+  position: absolute;
+  right: 0;
+  top: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  .wrap-addTrade {
+    margin: 0 10px;
+  }
 }

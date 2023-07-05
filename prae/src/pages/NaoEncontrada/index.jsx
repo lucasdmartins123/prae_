@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar";
 import "./index.css";
+import Footer from "../../components/Footer";
 
 export default function NaoEncontrada() {
   return (
@@ -13,6 +14,7 @@ export default function NaoEncontrada() {
         </p>
         <p className="paragrafo">Volte ou recarregue a pagina</p>
       </div>
+      <Footer />
     </>
   );
 }

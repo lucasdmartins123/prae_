@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { useParams } from "react-router-dom";
 import { BooksContext } from "../../components/contextos/BooksContext";
+import Footer from "../../components/Footer";
 
 export default function EditBook() {
   const { bookDetails, loadBookDetails, bookDelete, bookEdit } =
@@ -128,6 +129,7 @@ export default function EditBook() {
           </button>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,27 @@
+.about__container {
+  min-height: calc(100vh - 125px);
+  background-color: #e3e3e3;
+  padding: 58px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.about__container h1 {
+  align-self: center;
+}
+.about__infos p {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 425px) {
+  .about__container {
+    padding: 20px 25px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 900px) {
+  .about__container {
+    padding: 30px 55px;
+  }
+}

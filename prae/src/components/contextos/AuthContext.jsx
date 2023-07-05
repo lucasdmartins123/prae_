@@ -13,7 +13,15 @@ const AuthProvider = ({ children }) => {
     try {
       const { data } = await api.post("/login", userData);
       const token = JSON.stringify(data.token);
-      const user = { name: data.nome, email: data.email, id: data.id };
+      const user = {
+        name: data.nome,
+        email: data.email,
+        id: data.id,
+        points: data.pontuacao,
+        credits: data.creditos,
+        ranking: data.classificacao,
+        admin: data.is_admin,
+      };
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
       setAuthenticated(true);
@@ -22,6 +30,7 @@ const AuthProvider = ({ children }) => {
       navigate("/home");
     } catch (error) {
       console.log(error);
+      alert("email inexistente ou senha invalida");
     }
   }
 

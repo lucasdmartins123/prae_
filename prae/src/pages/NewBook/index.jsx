@@ -2,6 +2,7 @@ import "./index.css";
 import { useContext, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { BooksContext } from "../../components/contextos/BooksContext";
+import Footer from "../../components/Footer";
 
 export default function NewBook() {
   const [titulo, setTitulo] = useState("");
@@ -102,6 +103,7 @@ export default function NewBook() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import "./index.css";
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 export default function CreditArea() {
   const [email, setEmail] = useState("");
@@ -47,6 +48,7 @@ export default function CreditArea() {
         </div>
         {/* </div> */}
       </div>
+      <Footer />
     </>
   );
 }

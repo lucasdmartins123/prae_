@@ -1,6 +1,6 @@
 .editbook__container {
   width: 100%;
-  min-height: calc(100vh - 58px);
+  min-height: calc(100vh - 125px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;

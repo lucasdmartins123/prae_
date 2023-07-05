@@ -1,4 +1,5 @@
 import "./index.css";
+import Footer from "../../components/Footer";
 import livro from "../../assets/livrogenerico.jpg";
 import Navbar from "../../components/Navbar";
 import avatar from "../../assets/avatar.jpg";
@@ -60,8 +61,9 @@ export default function Profile() {
             <div className="profile__content__infos__password">
               <p>Alterar senha</p>
             </div>
-            <h3>Crédtios: 2</h3>
-            <h3>Ranking: 29</h3>
+            <h3>Pontuação: {userData?.points}</h3>
+            <h3>Creditos: {userData?.credits}</h3>
+            <h3>Ranking: {userData?.ranking}</h3>
           </div>
           <div className="profile__content__out" onClick={handleLogout}>
             <h3>Sair da conta</h3>
@@ -72,20 +74,21 @@ export default function Profile() {
             </IconContext.Provider>
           </div>
         </div>
-        <div className="profile__middle">
-          <Link to="/creditArea">
-            <h3>Acessar área de Créditos</h3>
-          </Link>
-          <Link to="/newBook">
-            <h3>Acessar cadastro de livros</h3>
-          </Link>
-          <Link to="/newTrade">
-            <h3>Acessar área de trocas</h3>
-          </Link>
-          <Link to="/tradeHistory">
-            <h3>Acessar histórico de trocas</h3>
-          </Link>
-        </div>
+        {userData.admin ? (
+          <div className="profile__middle">
+            <Link to="/newBook">
+              <h3>Acessar cadastro de livros</h3>
+            </Link>
+            <Link to="/newTrade">
+              <h3>Acessar área de trocas</h3>
+            </Link>
+            <Link to="/tradeHistory">
+              <h3>Acessar histórico de trocas</h3>
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="content-favorites">
           <h2 className="content-favorites-text">Minha lista de interesse:</h2>
           <div className="content-favorites-book">
@@ -123,6 +126,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

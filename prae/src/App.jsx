@@ -15,6 +15,7 @@ import SearchResult from "./pages/SearchResult/index.jsx";
 import NaoEncontrada from "./pages/NaoEncontrada/index.jsx";
 import NewTrade from "./pages/NewTrade/index.jsx";
 import TradeHistory from "./pages/TradeHistory/index.jsx";
+import AboutUs from "./pages/AboutUs/index.jsx";
 
 function App() {
   const { authenticated, loading } = useContext(AuthContext);
@@ -32,6 +33,7 @@ function App() {
           <Route path="/book/:id" element={<Book />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/search" element={<SearchResult />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
           {/* admin */}
           <Route path="/editBook/:id" element={<EditBook />} />
           <Route path="/creditArea" element={<CreditArea />} />
