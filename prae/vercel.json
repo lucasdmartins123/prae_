@@ -1,0 +1,19 @@
+{
+  "routes": [
+    { "src": "/", "dest": "/" },
+    { "src": "/login", "dest": "/" },
+    { "src": "/register", "dest": "/" },
+    { "src": "/home", "dest": "/" },
+    { "src": "/profile", "dest": "/" },
+    { "src": "/search", "dest": "/" },
+    { "src": "/aboutUs", "dest": "/" },
+    { "src": "/editBook", "dest": "/" },
+    { "src": "/creditArea", "dest": "/" },
+    { "src": "/newTrade", "dest": "/" },
+    { "src": "/tradeHistory", "dest": "/" },
+    { "src": "/newBook", "dest": "/" },
+    { "src": "/ranking", "dest": "/" },
+    { "src": "/book", "dest": "/" },
+    { "src": "/*", "dest": "/" }
+  ]
+}
