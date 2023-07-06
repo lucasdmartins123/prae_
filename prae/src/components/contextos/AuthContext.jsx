@@ -6,7 +6,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userData, setUserData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleLogin(userData) {
@@ -21,7 +21,6 @@ const AuthProvider = ({ children }) => {
         credits: data.creditos,
         ranking: data.classificacao,
         admin: data.is_admin,
-        teste: data.teste,
       };
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
@@ -36,7 +35,6 @@ const AuthProvider = ({ children }) => {
 
   async function handleRegister(userData) {
     try {
-      console.log(userData);
       await api.post("/cadastro", userData);
       alert("cadastrado com sucesso");
       navigate("/login");
@@ -48,7 +46,7 @@ const AuthProvider = ({ children }) => {
   function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem("token");
-
+    localStorage.removeItem("user");
     navigate("/");
   }
 
@@ -59,6 +57,8 @@ const AuthProvider = ({ children }) => {
     if (token) {
       setAuthenticated(true);
       setUserData(user);
+    } else {
+      navigate("/");
     }
     setLoading(false);
   }, []);

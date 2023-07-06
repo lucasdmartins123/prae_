@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../../Axios/api";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 const BooksContext = createContext();
 
@@ -15,6 +16,7 @@ const BooksProvider = ({ children }) => {
   const [rankingList, setRankingList] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const { userData } = useContext(AuthContext);
   const headers = {
     headers: { Authorization: `Bearer ${JSON.parse(token)}` },
   };
@@ -43,7 +45,6 @@ const BooksProvider = ({ children }) => {
     setDbLoading(true);
     try {
       await api.post("livros", bookData, headers);
-      loadBooks();
       alert("livro adicionado");
     } catch (error) {
       console.log(error);
@@ -146,7 +147,7 @@ const BooksProvider = ({ children }) => {
       loadBooks();
       LoadRanking();
     }
-  }, []);
+  }, [userData]);
   return (
     <BooksContext.Provider
       value={{
