@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [rankingList, setRankingList] = useState([]);
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -21,12 +22,12 @@ const AuthProvider = ({ children }) => {
         credits: data.creditos,
         ranking: data.classificacao,
         admin: data.is_admin,
+        teste: data.teste,
       };
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
       setAuthenticated(true);
       setUserData(user);
-
       navigate("/home");
     } catch (error) {
       console.log(error);
@@ -52,6 +53,16 @@ const AuthProvider = ({ children }) => {
     navigate("/");
   }
 
+  async function LoadRanking(user) {
+    try {
+      const data = await api.get("/ranking", user);
+      setRankingList(data.content);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
     const user = JSON.parse(localStorage.getItem("user"));
@@ -59,6 +70,7 @@ const AuthProvider = ({ children }) => {
     if (token) {
       setAuthenticated(true);
       setUserData(user);
+      LoadRanking(user);
     }
     setLoading(false);
   }, []);
@@ -72,6 +84,8 @@ const AuthProvider = ({ children }) => {
         authenticated,
         loading,
         userData,
+        LoadRanking,
+        rankingList,
       }}
     >
       {children}

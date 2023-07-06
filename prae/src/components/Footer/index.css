@@ -3,7 +3,13 @@
   color: black;
   padding: 1.5rem 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   column-gap: 0.5rem;
+}
+
+.text {
+  text-align: center;
+  text-decoration: none;
+  color: black;
 }
