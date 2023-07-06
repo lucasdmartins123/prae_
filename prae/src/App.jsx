@@ -41,9 +41,9 @@ function App() {
           <Route path="/tradeHistory" element={<TradeHistory />} />
           <Route path="/newBook" element={<NewBook />} />
           <Route path="/ranking" element={<Ranking />} />
+          <Route path="*" element={<NaoEncontrada />} />
         </>
       )}
-      <Route path="*" element={<NaoEncontrada />} />
     </Routes>
   );
 }

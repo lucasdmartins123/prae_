@@ -45,6 +45,7 @@ const BooksProvider = ({ children }) => {
     setDbLoading(true);
     try {
       await api.post("livros", bookData, headers);
+      loadBooks();
       alert("livro adicionado");
     } catch (error) {
       console.log(error);
@@ -136,7 +137,6 @@ const BooksProvider = ({ children }) => {
     try {
       const { data } = await api.get("/ranking", headers);
       setRankingList(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
