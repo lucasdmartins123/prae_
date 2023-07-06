@@ -9,6 +9,7 @@ const BooksProvider = ({ children }) => {
   const [favoritesList, setFavoritesList] = useState([]);
   const [bookDetails, setBookDetails] = useState({});
   const [loading, setLoading] = useState(true);
+  const [dbLoading, setDbLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [trades, setTrades] = useState([]);
   const [rankingList, setRankingList] = useState([]);
@@ -39,12 +40,15 @@ const BooksProvider = ({ children }) => {
   }
 
   async function bookRegister(bookData) {
+    setDbLoading(true);
     try {
       await api.post("livros", bookData, headers);
       loadBooks();
       alert("livro adicionado");
     } catch (error) {
       console.log(error);
+    } finally {
+      setDbLoading(false);
     }
   }
 
@@ -164,6 +168,7 @@ const BooksProvider = ({ children }) => {
         trades,
         LoadRanking,
         rankingList,
+        dbLoading,
       }}
     >
       {children}

@@ -9,7 +9,7 @@ export default function NewBook() {
   const [autor, setAutor] = useState("");
   const [genero, setGenero] = useState("");
   const [quantidade, setQuantidade] = useState("");
-  const { bookRegister } = useContext(BooksContext);
+  const { bookRegister, dbLoading } = useContext(BooksContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -96,7 +96,7 @@ export default function NewBook() {
 
               <div className="container-login-form-btn">
                 <button type="submit" className="login-form-btn">
-                  Enviar
+                  {dbLoading ? "carregando..." : "Enviar"}
                 </button>
               </div>
             </form>
