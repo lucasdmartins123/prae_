@@ -30,6 +30,7 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/aboutUs" element={<AboutUs />} />
 
       <Route
         path="/home"
@@ -47,10 +48,7 @@ function App() {
         path="/search"
         element={authenticated ? <SearchResult /> : <Navigate to="/" />}
       />
-      <Route
-        path="/aboutUs"
-        element={authenticated ? <AboutUs /> : <Navigate to="/" />}
-      />
+
       <Route
         path="/editBook/:id"
         element={authenticated ? <EditBook /> : <Navigate to="/" />}
