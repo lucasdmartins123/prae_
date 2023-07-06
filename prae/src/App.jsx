@@ -24,26 +24,61 @@ function App() {
   }
   return (
     <Routes>
-      <Route path="/" element={<Begin />} />
+      <Route
+        path="/"
+        element={!authenticated ? <Begin /> : <Navigate to="/home" />}
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      {authenticated && (
-        <>
-          <Route path="/home" element={<Home />} />
-          <Route path="/book/:id" element={<Book />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/search" element={<SearchResult />} />
-          <Route path="/aboutUs" element={<AboutUs />} />
-          {/* admin */}
-          <Route path="/editBook/:id" element={<EditBook />} />
-          <Route path="/creditArea" element={<CreditArea />} />
-          <Route path="/newTrade" element={<NewTrade />} />
-          <Route path="/tradeHistory" element={<TradeHistory />} />
-          <Route path="/newBook" element={<NewBook />} />
-          <Route path="/ranking" element={<Ranking />} />
-          <Route path="*" element={<NaoEncontrada />} />
-        </>
-      )}
+
+      <Route
+        path="/home"
+        element={authenticated ? <Home /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/book/:id"
+        element={authenticated ? <Book /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/profile"
+        element={authenticated ? <Profile /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/search"
+        element={authenticated ? <SearchResult /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/aboutUs"
+        element={authenticated ? <AboutUs /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/editBook/:id"
+        element={authenticated ? <EditBook /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/creditArea"
+        element={authenticated ? <CreditArea /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/newTrade"
+        element={authenticated ? <NewTrade /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/tradeHistory"
+        element={authenticated ? <TradeHistory /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/newBook"
+        element={authenticated ? <NewBook /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/ranking"
+        element={authenticated ? <Ranking /> : <Navigate to="/" />}
+      />
+      <Route
+        path="*"
+        element={authenticated ? <NaoEncontrada /> : <Navigate to="/" />}
+      />
     </Routes>
   );
 }
