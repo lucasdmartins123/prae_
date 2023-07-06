@@ -57,6 +57,7 @@ const BooksProvider = ({ children }) => {
   async function bookEdit(bookData) {
     try {
       await api.put(`livros`, bookData, headers);
+      loadBooks();
       alert("livro atualizado");
     } catch (error) {
       console.log(error);
@@ -66,6 +67,7 @@ const BooksProvider = ({ children }) => {
   async function bookDelete(id) {
     try {
       await api.delete(`livros/${id}`, headers);
+      loadBooks();
       alert("livro excluido");
       navigate("/home");
     } catch (error) {
