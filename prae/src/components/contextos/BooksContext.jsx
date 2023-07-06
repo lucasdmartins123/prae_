@@ -142,7 +142,7 @@ const BooksProvider = ({ children }) => {
       loadBooks();
       LoadRanking();
     }
-  }, [bookRegister]);
+  }, []);
   return (
     <BooksContext.Provider
       value={{
