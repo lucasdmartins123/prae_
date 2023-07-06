@@ -11,6 +11,7 @@ const BooksProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [trades, setTrades] = useState([]);
+  const [rankingList, setRankingList] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const headers = {
@@ -111,7 +112,7 @@ const BooksProvider = ({ children }) => {
     try {
       await api.post(`/trocas`, tradeData, headers);
       loadTrades();
-      alert("Troca adiconada com sucesso");
+      alert("Troca adicionada com sucesso");
     } catch (error) {
       alert("Usuario nao cadastrado");
     }
@@ -126,11 +127,22 @@ const BooksProvider = ({ children }) => {
     }
   }
 
+  async function LoadRanking() {
+    try {
+      const { data } = await api.get("/ranking", headers);
+      setRankingList(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     if (token) {
       loadBooks();
+      LoadRanking();
     }
-  }, []);
+  }, [bookRegister]);
   return (
     <BooksContext.Provider
       value={{
@@ -150,6 +162,8 @@ const BooksProvider = ({ children }) => {
         addTrade,
         loadTrades,
         trades,
+        LoadRanking,
+        rankingList,
       }}
     >
       {children}
