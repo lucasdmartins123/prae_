@@ -23,7 +23,7 @@ export default function Ranking() {
               <p>Posição: {user.posicao}</p>
               <p>Email: {user.email}</p>
               <p>Nome: {user.nome}</p>
-              <p>Pontos: {user.pontuacao}</p>
+              <p>Trocas: {user.pontuacao}</p>
             </div>
           ))}
         </div>

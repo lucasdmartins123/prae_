@@ -61,7 +61,7 @@ export default function Profile() {
             <div className="profile__content__infos__password">
               <p>Alterar senha</p>
             </div>
-            <h3>Pontuação: {userData?.points}</h3>
+            <h3>Trocas: {userData?.points}</h3>
             <h3>Creditos: {userData?.credits}</h3>
             <h3>Ranking: {userData?.ranking}</h3>
           </div>

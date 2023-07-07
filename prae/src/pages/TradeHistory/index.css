@@ -2,7 +2,7 @@
   display: flex;
   min-height: calc(100vh - 125px);
   flex-direction: column;
-  padding: 28px 250px;
+  padding: 28px 120px;
   gap: 20px;
   background-color: #e3e3e3;
 }
@@ -14,17 +14,24 @@
 
 .trade__infos {
   display: flex;
-  gap: 5rem;
-  flex-wrap: wrap;
+  gap: 16px;
+  flex-direction: column;
 }
 
 .trade__card {
   display: flex;
-  gap: 0.5rem;
-  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
 }
-.trade__card p {
-  margin-bottom: 10px;
+.trade__card p:nth-of-type(1) {
+  width: 30%;
+}
+.trade__card p:nth-of-type(2) {
+  width: 40%;
+}
+.trade__card p:nth-of-type(3) {
+  width: 30%;
 }
 
 @media (max-width: 425px) {
@@ -37,6 +44,18 @@
   }
   .trade__infos {
     gap: 2rem;
+  }
+  .trade__card p {
+    padding-bottom: 5px;
+  }
+  .trade__card p:nth-of-type(1) {
+    width: 100%;
+  }
+  .trade__card p:nth-of-type(2) {
+    width: 100%;
+  }
+  .trade__card p:nth-of-type(3) {
+    width: 100%;
   }
 }
 
@@ -57,5 +76,18 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+  }
+
+  .trade__card p {
+    padding-bottom: 5px;
+  }
+  .trade__card p:nth-of-type(1) {
+    width: 100%;
+  }
+  .trade__card p:nth-of-type(2) {
+    width: 100%;
+  }
+  .trade__card p:nth-of-type(3) {
+    width: 100%;
   }
 }
