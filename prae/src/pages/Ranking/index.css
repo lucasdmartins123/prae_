@@ -24,7 +24,8 @@
 }
 
 .ranking p {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .ranking p:nth-of-type(1) {

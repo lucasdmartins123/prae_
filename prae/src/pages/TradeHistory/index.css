@@ -26,7 +26,8 @@
 }
 
 .trade__card p {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .trade__card p:nth-of-type(1) {
